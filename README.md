@@ -27,17 +27,17 @@
 # 1. Waitlist Module (`Waitlist` Table)
 * **Status**: Accepted & Implemented
 * **Change**: Added `ticketTypeId` as a Foreign Key referencing `TicketType(id)`.
-* **Rationale**: Previously, users could only register for general event availability. Supporting tier-specific waitlisting allows attendees to line up for specific ticket categories (e.g., VIP, Early Bird, General Admission) when those tiers reach capacity.
+* **Notes**: Previously, users could only register for general event availability. Supporting tier specific waitlisting allows attendees to line up for specific ticket categories (e.g., VIP, Early Bird, General Admission) when those tiers reach capacity.
 
 ### 2. Order Details (`Order` Table)
-* **Status**: Rejected / Decision Retained
+* **Status**: Rejected
 * **Decision**: Rejected the suggestion to add explicit `taxAmount` and `feeAmount` fields. Retained direct `subtotal`, `discountAmount`, and `totalAmount` attributes.
-* **Rationale**: Ticket pricing on Eventra is structuralized as all-inclusive to maintain a clean schema footprint. External payment gateways (e.g., GoPay, BCA) compute and record processing/merchant fees at transaction runtime, eliminating the need to duplicate auxiliary fee calculations inside the internal database.
+* **Notes**: Ticket pricing on Eventra is structuralized as all inclusive to maintain a clean price presentation. External payment gateways (e.g., GoPay, BCA) compute and record processing/merchant fees at transaction runtime, eliminating the need to duplicate extra fee calculations inside the internal database.
 
 ### 3. Event Feedback (`Review` Table)
 * **Status**: Accepted & Implemented
 * **Change**: Removed the legacy unique constraint `(ticketId, eventId)` and applied `(userId, eventId)`.
-* **Rationale**: Tying review constraints to ticket IDs enabled single accounts purchasing multiple tickets (e.g., group bookings) to submit multiple reviews for a single event. Enforcing a `(userId, eventId)` composite unique constraint prevents rating manipulation and ensures each user account is limited to one review per attended event.
+* **Notes**: Tying review constraints to ticket IDs enabled single accounts purchasing multiple tickets (e.g., group bookings) to submit multiple reviews for a single event. Enforcing a `(userId, eventId)` composite unique constraint prevents rating manipulation and ensures each user account is limited to one review per attended event.
 
 
 
