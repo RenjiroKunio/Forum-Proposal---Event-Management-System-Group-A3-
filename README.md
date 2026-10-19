@@ -11,7 +11,9 @@
 
 # Before and After AI Design Review
 
-## ERD
+## Entity-Relationship Diagram
+1. Before AI: https://drive.google.com/file/d/1cO2sv_LjhD-rl2w2ldWVyMzkxzFzuIOG/view?usp=drivesdk
+2. After AI: https://drive.google.com/file/d/1gwqvg5HejcpKX7dbSQWqB7_U4-v81ZuT/view?usp=drivesdk
 
 ## Normalization
 
@@ -20,6 +22,24 @@
 2. [Version 2 (After AI)](https://docs.google.com/spreadsheets/d/14fpw2edzZV8etOHjjeOs7vJ9F_022TG2ObSlos6V82Q/edit?usp=sharing)
 
 ## AI Review Decision Table
+
+### Entity Relationship Diagram
+# 1. Waitlist Module (`Waitlist` Table)
+* **Status**: Accepted & Implemented
+* **Change**: Added `ticketTypeId` as a Foreign Key referencing `TicketType(id)`.
+* **Rationale**: Previously, users could only register for general event availability. Supporting tier-specific waitlisting allows attendees to line up for specific ticket categories (e.g., VIP, Early Bird, General Admission) when those tiers reach capacity.
+
+### 2. Order Details (`Order` Table)
+* **Status**: Rejected / Decision Retained
+* **Decision**: Rejected the suggestion to add explicit `taxAmount` and `feeAmount` fields. Retained direct `subtotal`, `discountAmount`, and `totalAmount` attributes.
+* **Rationale**: Ticket pricing on Eventra is structuralized as all-inclusive to maintain a clean schema footprint. External payment gateways (e.g., GoPay, BCA) compute and record processing/merchant fees at transaction runtime, eliminating the need to duplicate auxiliary fee calculations inside the internal database.
+
+### 3. Event Feedback (`Review` Table)
+* **Status**: Accepted & Implemented
+* **Change**: Removed the legacy unique constraint `(ticketId, eventId)` and applied `(userId, eventId)`.
+* **Rationale**: Tying review constraints to ticket IDs enabled single accounts purchasing multiple tickets (e.g., group bookings) to submit multiple reviews for a single event. Enforcing a `(userId, eventId)` composite unique constraint prevents rating manipulation and ensures each user account is limited to one review per attended event.
+
+
 
 ### Normalization
 
