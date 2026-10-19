@@ -7,7 +7,7 @@
 3. Renjiro Kunio Handoko- 2902740591 
 
 # Proposal Presentation Video Link (Google Drive)
-[Proposal Presentation Video](https://drive.google.com/file/d/1wAmWQHqW5q68UDbFaX-iIlsD_AvSI8WM/view?usp=sharing)
+[Proposal Presentation Video](https://drive.google.com/file/d/1rzX4p-vrkjEclrJo16CmxlViSj8Hj95M/view?usp=sharing)
 
 # Before and After AI Design Review
 
