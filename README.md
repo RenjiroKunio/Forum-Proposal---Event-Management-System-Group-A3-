@@ -21,6 +21,8 @@
 
 ## AI Review Decision Table
 
+### Normalization
+
 | AI Recommendation | Decision | Why? |
 |---|---|---|
 | Delete derived columns that break 3NF. | Accept | Stored totals can drift out of date when the rows behind them change. Each value can be calculated from other columns, so we compute it instead. |
